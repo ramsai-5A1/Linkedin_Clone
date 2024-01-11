@@ -7,14 +7,18 @@ import { CgProfile } from "react-icons/cg";
 import { TbGridDots } from "react-icons/tb";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { BiSolidDownArrow } from "react-icons/bi";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { BACKEND_PROFILE_API } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setInfo } from "../utils/ProfileDataSlice";
+import LogoutContext from "../utils/LogoutInfo";
 
 const Header = () => {
 
     const dispatch = useDispatch();
+    const temp = useContext(LogoutContext);
+    // console.log("From header");
+    // console.log(temp);
 
     useEffect(() => {
         const getProfileDataFromBackend = async () => {

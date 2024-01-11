@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { BACKEND_POSTS_API } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addPostsToDatabase } from "../utils/PostsDataSlice";
@@ -12,16 +12,48 @@ import { LuSend } from "react-icons/lu";
 const MiddleBar = ({ info }) => {
     const dispatch = useDispatch();
     const [posts, setPosts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const fetchData = useCallback(async () => {
+        if (isLoading)  return;
+
+        setIsLoading(true);
+        const rawData = await fetch(BACKEND_POSTS_API);
+        const data = await rawData.json();
+        console.log(data);
+        console.log("From fetchAgain");
+        const temp = data.data;
+        setPosts([...posts, ...temp]);
+        setIsLoading(false);
+    }, [isLoading]);
 
     useEffect(() => {
         const fetchDataFromBackend  = async () => {
+            setIsLoading(true);
             const rawData = await fetch(BACKEND_POSTS_API);
             const data = await rawData.json();
             dispatch(addPostsToDatabase(data.data));
             setPosts(data.data);
+            setIsLoading(false);
         }
         fetchDataFromBackend();
     }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+          const { scrollTop, clientHeight, scrollHeight } =
+            document.documentElement;
+          if (scrollTop + clientHeight >= scrollHeight - 20) {
+            fetchData();
+          }
+        };
+    
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, [fetchData]);
+
 
     if (posts === undefined || posts.length === 0) {
         return <ShimmerUI/>
@@ -30,8 +62,7 @@ const MiddleBar = ({ info }) => {
     return (
         <div>
             <TopMostComponent/>
-            <PostComponent dataObj={posts[0]} info={info}/>
-            {posts.map((post) => <PostComponent dataObj={post} info={info}/>)}
+            {posts.map((post) => <PostComponent key={post.id} dataObj={post} info={info}/>)}
         </div>
     )
 };
@@ -47,7 +78,7 @@ const TopMostComponent = () => {
 }
 
 const PostComponent = ({ dataObj, info }) => {
-    const { name, profilePic, bio, time, postBody, postImageUrl } = dataObj;
+    const { name, profilePic, bio, time, postBody, postImageUrl, postImage } = dataObj;
 
     return (
         <div className="p-2">
@@ -80,7 +111,7 @@ const PostHeader = ({name, profilePic, bio, time}) => {
     )
 }
 
-const PostBody = ({ postBody }) => {
+const PostBody = ({ postBody, postImageUrl }) => {
 
     const [seeMore, setSeeMore] = useState(false);
     const [length, setLength] = useState(140);
@@ -102,6 +133,9 @@ const PostBody = ({ postBody }) => {
                     {!seeMore && <label onClick={performSeeMore} className="hover:cursor-pointer text-gray-500">...see more</label>}
                     {seeMore && <label onClick={performShowMore} className="hover:cursor-pointer text-gray-500"> show less</label>}
                 </p>
+                { postImageUrl.length > 0 && <div>
+                    <img className="w-full h-52" src={postImageUrl}/>
+                </div>}
             </div>
         </div>
     )
