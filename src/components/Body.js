@@ -4,11 +4,13 @@ import MiddleBar from "./MiddleBar";
 import RightSideBar from "./RightSideBar";
 import ShimmerUI from "./ShimmerUI";
 import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const Body = () => {
-
+    console.log("Body");
     const [apiData, setApiData] = useState(false); 
-    const info = useSelector((store) => store.profileInfo.info);
 
     useEffect(() => {
         setTimeout(() => {
@@ -20,12 +22,30 @@ const Body = () => {
         return <ShimmerUI/>
     }
     return (
-        <div className="flex bg-gray-100">
+        <div className="">
+            <Outlet/>
+        </div>
+    )
+};
+
+export const HeaderDummy = () => {
+    return (
+        <div>
+            <Header/>
+            <Outlet/>
+        </div>
+    )
+}
+
+export const MainContainer = () => {
+    const info = useSelector((store) => store.profileInfo.info);
+    return (
+        <div className="flex bg-gray-100"> 
             <LeftSideBar/>
             <MiddleBar info={info}/>
             <RightSideBar/>
         </div>
     )
-};
+}
 
 export default Body;

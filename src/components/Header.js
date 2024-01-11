@@ -11,14 +11,11 @@ import { useContext, useEffect } from "react";
 import { BACKEND_PROFILE_API } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setInfo } from "../utils/ProfileDataSlice";
-import LogoutContext from "../utils/LogoutInfo";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-
+    console.log("Header");
     const dispatch = useDispatch();
-    const temp = useContext(LogoutContext);
-    // console.log("From header");
-    // console.log(temp);
 
     useEffect(() => {
         const getProfileDataFromBackend = async () => {
@@ -45,72 +42,89 @@ const Header = () => {
 
             <div className="w-[700px] p-1">
                 <div className="flex justify-between ">
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-2">
-                            <FaHome className="w-[30px] h-[30px] " />
+                
+                    <Link to="/"> 
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-2">
+                                <FaHome className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Home</span>
                         </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Home</span>
-                    </div>
+                     </Link>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg "> 
-                        <div className="px-6">
-                            <BsFillPeopleFill className="w-[30px] h-[30px] " />
-                        </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">My Network</span>
-                    </div>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                         <div className="px-2">
-                            <FaSuitcase className="w-[30px] h-[30px] " />
+                    <Link to="/mynetwork">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg "> 
+                            <div className="px-6">
+                                <BsFillPeopleFill className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">My Network</span>
                         </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Jobs</span>
-                    </div>
+                    </Link>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-4">
-                            <FiMessageSquare className="w-[30px] h-[30px] " />
+                    <Link to="/jobs">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-2">
+                                <FaSuitcase className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Jobs</span>
                         </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Messaging</span>
-                    </div>
+                    </Link>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-4">
-                            <IoNotificationsSharp className="w-[30px] h-[30px] " />
+                    <Link to="/messaging">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-4">
+                                <FiMessageSquare className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Messaging</span>
                         </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Notifications</span>
-                    </div>
+                    </Link>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-2">
-                            <CgProfile className="w-[30px] h-[30px] " />
+                    <Link to="/notifications">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-4">
+                                <IoNotificationsSharp className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Notifications</span>
                         </div>
-                        <div className="flex">
-                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Me</span>
-                            <BiSolidDownArrow/>
-                        </div>
+                    </Link>
 
-                    </div>
+                    <Link to="/me">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-2">
+                                <CgProfile className="w-[30px] h-[30px] " />
+                            </div>
+                            <div className="flex">
+                                <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Me</span>
+                                <BiSolidDownArrow/>
+                            </div>
+                        </div>
+                    </Link>
 
                     <div>
                         <div className="bg-gray-300 w-[1px] shadow-lg h-12"></div>
                     </div>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-4">
-                            <TbGridDots className="w-[30px] h-[30px] " />
+                    <Link to="/business">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-4">
+                                <TbGridDots className="w-[30px] h-[30px] " />
+                            </div>
+                            <div className="flex">
+                                <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">For Business</span>
+                                <BiSolidDownArrow/>
+                            </div>
                         </div>
-                        <div className="flex">
-                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">For Business</span>
-                            <BiSolidDownArrow/>
-                        </div>
-                    </div>
+                    </Link>
 
-                    <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <div className="px-6">
-                            <BsSuitcaseLgFill className="w-[30px] h-[30px] " />
+                    <Link to="/postajob">
+                        <div className="flex flex-col hover:cursor-pointer rounded-lg ">
+                            <div className="px-6">
+                                <BsSuitcaseLgFill className="w-[30px] h-[30px] " />
+                            </div>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Post a job for free</span>
                         </div>
-                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Post a job for free</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>
