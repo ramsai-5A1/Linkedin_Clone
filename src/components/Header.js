@@ -7,10 +7,24 @@ import { CgProfile } from "react-icons/cg";
 import { TbGridDots } from "react-icons/tb";
 import { BsSuitcaseLgFill } from "react-icons/bs";
 import { BiSolidDownArrow } from "react-icons/bi";
-
-
+import { useEffect } from "react";
+import { BACKEND_PROFILE_API } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { setInfo } from "../utils/ProfileDataSlice";
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const getProfileDataFromBackend = async () => {
+            const rawData = await fetch(BACKEND_PROFILE_API);
+            const data = await rawData.json();
+            dispatch(setInfo(data));
+        }
+        getProfileDataFromBackend();
+    }, []);
+
     return (
         <div className="flex  w-full  h-14 shadow-lg">
             <div className="flex justify-between w-[3/12] py-2 px-[100px]">
