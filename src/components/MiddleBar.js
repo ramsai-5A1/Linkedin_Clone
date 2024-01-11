@@ -63,9 +63,8 @@ const MiddleBar = ({ info }) => {
 
 const TopMostComponent = () => {
     return (
-        <div className="py-6">
-            <div className="w-[600px] h-28 rounded-xl bg-white">
-
+        <div className="py-4">
+            <div className="w-[600px] h-28 rounded-xl bg-white shadow-lg">
             </div>
         </div>
     )
@@ -76,7 +75,7 @@ const PostComponent = ({ dataObj, info }) => {
 
     return (
         <div className="p-2">
-            <div className="w-[600px] h-auto min-h-72 bg-white rounded-lg">
+            <div className="w-[600px] h-auto min-h-72 bg-white rounded-lg shadow-lg">
                 <PostHeader name={name} profilePic={profilePic} bio={bio} time={time}/>
                 <PostBody postBody={postBody} postImageUrl={postImageUrl}/>
                 <PostFooter info={info}/>
