@@ -28,34 +28,46 @@ const Header = () => {
             <div className="w-[700px] p-1">
                 <div className="flex justify-between ">
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <FaHome className="w-[30px] h-[30px] " />
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Home</span>
+                        <div className="px-2">
+                            <FaHome className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Home</span>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg "> 
-                        <BsFillPeopleFill className="w-[30px] h-[30px]"/>
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">My Network</span>
+                        <div className="px-6">
+                            <BsFillPeopleFill className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">My Network</span>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <FaSuitcase className="w-[30px] h-[30px]" />
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Jobs</span>
+                         <div className="px-2">
+                            <FaSuitcase className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Jobs</span>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <FiMessageSquare className="w-[30px] h-[30px]" />
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Messaging</span>
+                        <div className="px-4">
+                            <FiMessageSquare className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Messaging</span>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <IoNotificationsSharp className="w-[30px] h-[30px]" />
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Notifications</span>
+                        <div className="px-4">
+                            <IoNotificationsSharp className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Notifications</span>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <CgProfile className="w-[30px] h-[30px]" />
+                        <div className="px-2">
+                            <CgProfile className="w-[30px] h-[30px] " />
+                        </div>
                         <div className="flex">
-                            <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Me</span>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Me</span>
                             <BiSolidDownArrow/>
                         </div>
 
@@ -66,16 +78,20 @@ const Header = () => {
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <TbGridDots className="w-[30px] h-[30px]" />
+                        <div className="px-4">
+                            <TbGridDots className="w-[30px] h-[30px] " />
+                        </div>
                         <div className="flex">
-                            <span className="text-xs w-full hover:bg-gray-200 rounded-lg">For Business</span>
+                            <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">For Business</span>
                             <BiSolidDownArrow/>
                         </div>
                     </div>
 
                     <div className="flex flex-col hover:cursor-pointer rounded-lg ">
-                        <BsSuitcaseLgFill className="w-[30px] h-[30px]" />
-                        <span className="text-xs w-full hover:bg-gray-200 rounded-lg">Post a job for free</span>
+                        <div className="px-6">
+                            <BsSuitcaseLgFill className="w-[30px] h-[30px] " />
+                        </div>
+                        <span className="text-xs w-full hover:bg-gray-200 p-1 rounded-lg">Post a job for free</span>
                     </div>
                 </div>
             </div>
