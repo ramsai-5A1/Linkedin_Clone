@@ -14,46 +14,40 @@ const MiddleBar = ({ info }) => {
     const [posts, setPosts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const fetchData = useCallback(async () => {
+    useEffect(() => {
+        const fetchDataFromBackend = async () => {
+            const rawData = await fetch(BACKEND_POSTS_API);
+            const data = await rawData.json();
+            setPosts(data.data);
+            dispatch(addPostsToDatabase(data.data));
+        }
+        fetchDataFromBackend();
+    }, []);
+   
+    const fetchDataAgain = useCallback(async() => {
         if (isLoading)  return;
-
         setIsLoading(true);
         const rawData = await fetch(BACKEND_POSTS_API);
         const data = await rawData.json();
-        console.log(data);
-        console.log("From fetchAgain");
         const temp = data.data;
         setPosts([...posts, ...temp]);
         setIsLoading(false);
     }, [isLoading]);
-
-    useEffect(() => {
-        const fetchDataFromBackend  = async () => {
-            setIsLoading(true);
-            const rawData = await fetch(BACKEND_POSTS_API);
-            const data = await rawData.json();
-            dispatch(addPostsToDatabase(data.data));
-            setPosts(data.data);
-            setIsLoading(false);
-        }
-        fetchDataFromBackend();
-    }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-          const { scrollTop, clientHeight, scrollHeight } =
-            document.documentElement;
-          if (scrollTop + clientHeight >= scrollHeight - 20) {
-            fetchData();
-          }
-        };
     
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-          window.removeEventListener("scroll", handleScroll);
-        };
-      }, [fetchData]);
 
+    useEffect(() => {
+        const handleScrollEvent = () => {
+            const {scrollTop, clientHeight, scrollHeight} = document.documentElement;
+            if (scrollTop + clientHeight >= scrollHeight - 20) {
+                fetchDataAgain();
+            }
+        }
+
+        document.addEventListener("scroll", handleScrollEvent);
+        return () => {
+            document.removeEventListener("scroll", handleScrollEvent);
+        }
+    }, [fetchDataAgain]);
 
     if (posts === undefined || posts.length === 0) {
         return <ShimmerUI/>
