@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { BACKEND_NEWS_DATA_API } from "../utils/constants";
 import PopUpMessage from "./PopupMessage";
+import {MOCK_DATA_3} from "../utils/Mocks/MOCK_DATA_3";
 
 const RightSideBar = () => {
     return (
@@ -41,9 +41,10 @@ const NewsComponent = () => {
 
     useEffect(() => {
         const GetNewsDataFromBackend = async () => {
-            const rawData = await fetch(BACKEND_NEWS_DATA_API);
-            const data = await rawData.json();
-            setNewsData(data.data);
+            // const rawData = await fetch(BACKEND_NEWS_DATA_API);
+            // const data = await rawData.json();
+            const data = MOCK_DATA_3;
+            setNewsData(data);
         };
         GetNewsDataFromBackend();
     }, []);

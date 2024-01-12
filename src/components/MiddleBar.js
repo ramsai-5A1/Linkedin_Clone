@@ -11,7 +11,7 @@ import { BiSolidLike } from "react-icons/bi";
 import { BsCardImage } from "react-icons/bs";
 import { FaRegCalendarDays } from "react-icons/fa6";
 import { GrArticle } from "react-icons/gr";
-
+import {MOCK_DATA_1} from "../utils/Mocks/MOCK_DATA_1";
 
 
 const MiddleBar = ({ info }) => {
@@ -21,10 +21,11 @@ const MiddleBar = ({ info }) => {
 
     useEffect(() => {
         const fetchDataFromBackend = async () => {
-            const rawData = await fetch(BACKEND_POSTS_API);
-            const data = await rawData.json();
-            setPosts(data.data);
-            dispatch(addPostsToDatabase(data.data));
+            // const rawData = await fetch(BACKEND_POSTS_API);
+            // const data = await rawData.json();
+            const data = MOCK_DATA_1;
+            setPosts(data);
+            dispatch(addPostsToDatabase(data));
         }
         fetchDataFromBackend();
     }, []);
@@ -32,10 +33,20 @@ const MiddleBar = ({ info }) => {
     const fetchDataAgain = useCallback(async() => {
         if (isLoading)  return;
         setIsLoading(true);
-        const rawData = await fetch(BACKEND_POSTS_API);
-        const data = await rawData.json();
-        const temp = data.data;
-        setPosts([...posts, ...temp]);
+        // const rawData = await fetch(BACKEND_POSTS_API);
+        // const data = await rawData.json();
+        // const data = MOCK_DATA_1;
+        // const temp = data;
+        // console.log("Temp is: ");
+        // console.log(temp);
+
+        // console.log("Before Posts: ");
+        // console.log(posts);
+
+        // setPosts([...posts, ...temp]);
+        // console.log("after posts: ");
+        // console.log(posts);
+
         setIsLoading(false);
     }, [isLoading]);
     

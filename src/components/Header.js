@@ -12,6 +12,7 @@ import { BACKEND_PROFILE_API } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { setInfo } from "../utils/ProfileDataSlice";
 import { Link } from "react-router-dom";
+import MOCKDATA from "../utils/Mocks/MOCK_DATA_2.json";
 
 const Header = () => {
     console.log("Header");
@@ -19,8 +20,9 @@ const Header = () => {
 
     useEffect(() => {
         const getProfileDataFromBackend = async () => {
-            const rawData = await fetch(BACKEND_PROFILE_API);
-            const data = await rawData.json();
+            // const rawData = await fetch(BACKEND_PROFILE_API);
+            // const data = await rawData.json();
+            const data = MOCKDATA;
             dispatch(setInfo(data));
         }
         getProfileDataFromBackend();
