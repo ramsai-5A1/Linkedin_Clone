@@ -40,7 +40,7 @@ export const HeaderDummy = () => {
 export const MainContainer = () => {
     const info = useSelector((store) => store.profileInfo.info);
     return (
-        <div className="flex bg-gray-100"> 
+        <div className="flex bg-gray-100 py-14"> 
             <LeftSideBar/>
             <MiddleBar info={info}/>
             <RightSideBar/>
