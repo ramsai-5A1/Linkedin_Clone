@@ -1,8 +1,9 @@
+import Common from "./Common";
 
 const PostAJob = () => {
     return (
         <div>
-            Post a Jobs
+            <Common message={"Post a Job"}/>
         </div>
     )
 };

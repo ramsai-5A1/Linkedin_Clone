@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BACKEND_NEWS_DATA_API } from "../utils/constants";
+import PopUpMessage from "./PopupMessage";
 
 const RightSideBar = () => {
     return (
@@ -54,8 +55,8 @@ const NewsComponent = () => {
     }
 
     return (
-        <div>
-            <div className=" max-h-max  w-80 bg-white rounded-lg shadow-lg">
+        <div className="w-full">
+            <div className=" h-full  w-80 bg-white rounded-lg shadow-lg">
                 {showDisclaimer && <DisclaimerComponent setShowDisclaimer={setShowDisclaimer}/>}
                 <div className="flex p-4 justify-between">
                     <span className="font-bold text-l">LinkedIn News</span>
@@ -70,6 +71,11 @@ const NewsComponent = () => {
                     <span onClick={handleShowMore} className="w-28 h-4 p-1 hover:cursor-pointer hover:bg-gray-500 bg-gray-300 rounded-md">{message[index]}</span>
                 </div>
             </div>
+
+            <PopUpMessage/>
+            {/* <div className="w-[300px] h-[50px] bg-white rounded-md">
+
+                </div> */}
         </div>
     )
 }
@@ -95,5 +101,6 @@ const SingleNewsRow = ({news}) => {
         </div>
     )
 }
+
 
 export default RightSideBar;

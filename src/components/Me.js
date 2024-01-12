@@ -1,8 +1,9 @@
+import Common from "./Common";
 
 const Me = () => {
     return (
         <div>
-            My Profile
+            <Common message={"My Profile"}/>
         </div>
     )
 };

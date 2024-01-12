@@ -1,8 +1,9 @@
+import Common from "./Common";
 
 const Business = () => {
     return (
         <div>
-            Business
+            <Common message={"Business"}/>
         </div>
     )
 };

@@ -1,8 +1,9 @@
+import Common from "./Common";
 
 const MyNetwork = () => {
     return (
         <div>
-            MyNetwork
+            <Common message={"My Network"}/>
         </div>
     )
 };

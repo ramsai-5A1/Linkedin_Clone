@@ -7,6 +7,11 @@ import { BiLike } from "react-icons/bi";
 import { FaRegCommentDots } from "react-icons/fa";
 import { BiRepost } from "react-icons/bi";
 import { LuSend } from "react-icons/lu";
+import { BiSolidLike } from "react-icons/bi";
+import { BsCardImage } from "react-icons/bs";
+import { FaRegCalendarDays } from "react-icons/fa6";
+import { GrArticle } from "react-icons/gr";
+
 
 
 const MiddleBar = ({ info }) => {
@@ -55,16 +60,59 @@ const MiddleBar = ({ info }) => {
 
     return (
         <div>
-            <TopMostComponent/>
+            <TopMostComponent info={info}/>
             {posts.map((post) => <PostComponent key={post.id} dataObj={post} info={info}/>)}
         </div>
     )
 };
 
-const TopMostComponent = () => {
+const TopMostComponent = ({info}) => {
+    const { profileUrl } = info;
+
     return (
         <div className="py-4">
             <div className="w-[600px] h-28 rounded-xl bg-white shadow-lg">
+                <div className="flex p-2">
+                    <div className="w-10 h-10 rounded-full py-3 ">
+                        <img 
+                            alt="profileImage"
+                            className="rounded-full"
+                            src={profileUrl}/>
+                    </div>
+                    <input
+                        type="text"
+                        className="p-2 m-2 border rounded-full w-[550px] border-gray-300"
+                        placeholder="Start a post"
+                    />
+                </div>
+
+                <div className="flex justify-between pl-24 w-[500px]">
+                    <div className="w-[70px] flex justify-between hover:cursor-pointer hover:bg-gray-300 rounded-lg p-1"> 
+                        <div className="py-1">
+                            <BsCardImage />
+                        </div>
+                        
+                        <span>Media</span>
+                    </div>
+
+                    <div className="w-[65px] flex justify-between hover:cursor-pointer hover:bg-gray-300 rounded-lg p-1"> 
+                        <div className="py-1">
+                            <FaRegCalendarDays/>
+                        </div>
+                        
+                        <span>Event</span>
+                    </div>
+
+                    <div className="w-[120px] flex justify-between hover:cursor-pointer hover:bg-gray-300 p-1 rounded-lg"> 
+                        <div className="py-1">
+                            <GrArticle/>
+                        </div>
+                        <div className="">
+                            <span>Write article</span>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     )
@@ -87,7 +135,7 @@ const PostComponent = ({ dataObj, info }) => {
 const PostHeader = ({name, profilePic, bio, time}) => {
     return (
         <div>
-            <div className="p-4 flex">
+            <div className="p-4 flex hover:cursor-pointer">
 
                 <div className="p-2">
                     <img className="h-12 w-12 rounded-full" src={profilePic}/>
@@ -135,28 +183,30 @@ const PostBody = ({ postBody, postImageUrl }) => {
 }
 
 const PostFooter = ({info}) => {    
+    const [liked, setLiked] = useState(false);
     const {name, profileUrl} = info;
     
     return (
         <div className="p-1">
             <div className="w-full h-1 bg-gray-100 m-1 rounded-xl shadow-xl"></div>
             <div className="flex justify-between">
-                <div className="flex p-1">
-                    <BiLike/>
-                    <span className="text-sm pl-1">Like</span>
+                <div className="flex p-1 hover:cursor-pointer hover:bg-gray-300 rounded-lg">
+                    { !liked && <BiLike/> }
+                    { liked && <BiSolidLike/> }
+                    <span onClick={() => setLiked(!liked)} className="text-sm pl-1">Like</span>
                 </div>
 
-                <div className="flex p-1">
+                <div className="flex p-1 hover:cursor-pointer hover:bg-gray-300 rounded-lg">
                     <FaRegCommentDots/>
                     <span className="text-sm pl-1">Comment</span>
                 </div>
 
-                <div className="flex p-1">
+                <div className="flex p-1 hover:cursor-pointer hover:bg-gray-300 rounded-lg">
                     <BiRepost/>
                     <span className="text-sm pl-1">Repost</span>
                 </div>
 
-                <div className="flex p-1">
+                <div className="flex p-1 hover:cursor-pointer hover:bg-gray-300 rounded-lg">
                     <LuSend/>
                     <span className="text-sm pl-1">Send</span>
                 </div>
